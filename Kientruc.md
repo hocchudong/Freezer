@@ -1,8 +1,8 @@
 # Kiến trúc, mối tương quan giữa các thành phần trong Freerer
 ![hinh anh](http://image.prntscr.com/image/34ab0c8458b04a0abcc68d2eea46d7ac.png)
 
-- 1.Người dùng gửi yêu cầu backup 
-Người dùng hoặc admin gửi yêu cầu thực hiện backup trên horizon. 
+- 1.Admin lên lịch thực hiện backup 
+Admin lên lịch backup trên horizon. 
 
 - 2.Xác thực với keystone
 Xác thực với Keystone quyền hạn của user
