@@ -4,27 +4,27 @@
 - 1.Người dùng gửi yêu cầu backup 
 Người dùng hoặc admin gửi yêu cầu thực hiện backup trên horizon. 
 
-- 2. Xác thực với keystone
+- 2.Xác thực với keystone
 Xác thực với Keystone quyền hạn của user
 
 - 3.Gọi Feezer API
 Yêu cầu được gửi đến thành phần Freezer API
 
-- 4. Ghi database
+- 4.Ghi database
 Frezzer nhận được yêu cầu, cập nhật trạng thái và ghi vào database Elasticsearch
 
-- 5. Freezer Scheduler nhận jobs
+- 5.Freezer Scheduler nhận jobs
 Freezer quản lý job backup bằng gửi lời gọi đến Freezer API để lấy jobs backup.
 
-- 6. Xác thực với Keystone
+- 6.Xác thực với Keystone
 Freezer API xác thực với Keystone, cấp quyền backend vào Swift cho Freezer Agent
 
-- 7. Feezer agent thực hiện backup 
+- 7.Feezer agent thực hiện backup 
 Sau khi nhận được yêu cầu backup từ Freezer scheduler, Freezer agent thực hiện backup và sao lưu vào Swift
-- 8. Backup mount local
+- 8.Backup mount local
 Trong trường hợp không sử dụng API, sau khi lên lịch backup, Freezer Schedule gửi yêu cầu backup đên Freezer Agent thực hiện backup. Tiến trình backup thực hiện sao lưu dữ liệu xuống phân vùng mount (có thể là NFS, GlusterFS). Dữ liệu được load lên RAM máy local trước khi được nghi xuống phân vùng mount
 
-- 9. Backup remote FS
+- 9.Backup remote FS
 Khi thực hiện quá trình backup, ngoài việc sao lưu dữ liệu đến phân vùng mount ta có thể đẩy dữ liệu backup đến một server khác thông qua SSH.
 
 ## 1.Freezer Agent backup workflow
