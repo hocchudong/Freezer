@@ -3,7 +3,7 @@ Freezer là một Backup Restore DR as a Service giúp sao lưu và khôi phục
 
 Tính năng của Freezer:
 
-- Sao lưu Filesytem sử dụng sapshot
+- Sao lưu Filesytem sử dụng snapshot
 - Hỗ trợ mã hóa dữ liệu backup mạnh: AES-256-CFB
 - Sao lưu Filesytem trực tiếp không thực hiện volume snapshot
 - Backup Journal MongoDB sử dụng lvm snapshot vào Swift
