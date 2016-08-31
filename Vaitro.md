@@ -5,8 +5,8 @@ Tính năng của Freezer:
 
 - Sao lưu Filesytem sử dụng snapshot
 - Hỗ trợ mã hóa dữ liệu backup mạnh: AES-256-CFB
-- Sao lưu Filesytem trực tiếp không cần thực hiện volume snapshot
-- Backup Journal MongoDB sử dụng lvm snapshot. Đẩy dữ liệu backup vào Swift
+- Sao lưu Filesytem tree trực tiếp không cần thực hiện volume snapshot
+- Backup Journal MongoDB tree sử dụng lvm snapshot. Đẩy dữ liệu backup vào Swift
 - Sao lưu MySQL DB sử dụng lvm snapshot
 - Khôi phục dữ liệu vào filesytem tự động theo thời gian được chỉ định trước
 - Tiêu tốn dung lượng lưu trữ thấp
