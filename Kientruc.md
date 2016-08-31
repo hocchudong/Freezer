@@ -7,7 +7,7 @@ Trong trường hợp không sử dụng API, sau khi lên lịch backup, Freeze
 ## 2. Backup remote FS
 Khi thực hiện quá trình backup, ngoài việc sao lưu dữ liệu đến phân vùng mount ta có thể đẩy dữ liệu backup đến một server khác thông qua SSH.
 
-## 3.
+## 3.Người dùng gửi yêu cầu backup 
 Người dùng hoặc admin gửi yêu cầu thực hiện backup trên horizon. 
 
 ## 4. Xác thực với keystone
