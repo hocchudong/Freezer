@@ -2,6 +2,8 @@
 
 # Các thành phần trong Project Freezer
 
+![](http://image.prntscr.com/image/9803fae8ff65417a90150afb1079456d.png)
+
 ## 1. Freezer WebUI
  Giao diện web tương tác với Freezer API để thực hiện việc config và thay đổi thông số. Nó cung cấp hầu hết các tính năng tương tự như Freezer Agent CLI, các tùy chọn đặt lịch nâng cao như đồng bộ việc backup giữa nhiều node, đặt metric, báo cáo.
 
@@ -14,7 +16,7 @@
  - Queue size: tối ưu việc backup khi I/O, bandwidth, RAM hay CPU bị giới hạn.
  - I/O Affinity và Process Priority : sử dụng với I/O thời gian thực và ưu tiên các process người dùng.
  - Giới hạn băng thông
- - Mà hóa phía người dùng (AES-256-CFB)
+ - Mã hóa phía người dùng (AES-256-CFB)
  - Nén : sử dụng nhiều thuật toán như zlib, bzip2, xz/lzma
  - Upload song song tới hệ thống lưu trữ : backup vào swift , remote node bằng SSH, ...
  - Thực thi việc backup incremental theo dạng file (tar), dạng block (như rsync) và backup differential.
