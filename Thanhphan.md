@@ -2,6 +2,9 @@
 
 # Các thành phần trong Project Freezer
 
+![](http://image.prntscr.com/image/9803fae8ff65417a90150afb1079456d.png)
+
+
 ## 1. Freezer WebUI
  Giao diện web tương tác với Freezer API để thực hiện việc config và thay đổi thông số. Nó cung cấp hầu hết các tính năng tương tự như Freezer Agent CLI, các tùy chọn đặt lịch nâng cao như đồng bộ việc backup giữa nhiều node, đặt metric, báo cáo.
 
