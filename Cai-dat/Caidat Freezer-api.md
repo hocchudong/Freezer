@@ -1,12 +1,11 @@
 # A.Môi trường cài đặt
-2 Server: OpenStack Controller, Freezer-api
-OS: Ubuntu 14.04.5 LTS 
-Kernel: 3.16.0-77-generic
-Platform: OpenStack Mitaka
+ - OS: Ubuntu 14.04.5 LTS 
+ - Kernel: 3.16.0-77-generic
+ - Platform: OpenStack Mitaka
 
 # B. Cài đặt
-## 1.Cài đặt Freezer (thực hiện trên node Freezer)
-### 1.1.Cài đặt git
+## 1. Cài đặt Freezer (thực hiện trên node Freezer)
+### 1.1. Cài đặt git
 ```
 apt-get install git -y
 apt-get install python-pip -y
@@ -69,7 +68,7 @@ exec freezer-api
 
 ```
 
-## 2. Cài đặt ElasticSearch, có thể tách ra thành 1 node riêng, ở đây mình cài chung trên node Freezer.
+## 2. Cài đặt ElasticSearch, thực hiện trên Freezer node, (có thể tách ra node riêng)
 ### 2.1. Thêm Java PPA vào apt
 ```
 add-apt-repository -y ppa:webupd8team/java
@@ -91,17 +90,17 @@ echo "deb http://packages.elastic.co/elasticsearch/2.x/debian stable main" | sud
 apt-get update
 ```
 
-### 2.5 Cài đặt ElasticSearch
+### 2.5. Cài đặt ElasticSearch
 ```
 apt-get -y install elasticsearch
 ```
 
-### 2.5 Chỉnh sửa file cấu hình `/etc/elasticsearch/elasticsearch.yml`
+### 2.6. Chỉnh sửa file cấu hình `/etc/elasticsearch/elasticsearch.yml`
 ```
 network.host: localhost #Có thể sửa thành 0.0.0.0 nếu muốn tất cả các Server ngoài truy cập vào
 ```
 
-### 2.6. Khởi động lại ElasticSearch
+### 2.7. Khởi động lại ElasticSearch
 ```
 service elasticsearch restart
 ```
@@ -138,5 +137,5 @@ service freezer-api restart
 
 ### 3.5 Test freezer-api
 ```
-
+curl -H 'X-Auth-Token: [Token]' localhost:9090/v1
 ```
