@@ -1,6 +1,5 @@
-# Freezer
 
-##Table of Contents
+##Các thành phần
 ##[1. Freezer-Agent](https://github.com/hocchudong/Freezer/blob/master/Vaitro.md "Vaitro")
 ##[2. Freezer-Scheduler](https://github.com/hocchudong/Freezer/blob/master/Thanhphan.md)
 ##[3. Kiến trúc hệ thống](https://github.com/hocchudong/Freezer/blob/master/Kientruc.md)
