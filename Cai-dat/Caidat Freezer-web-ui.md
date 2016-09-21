@@ -20,7 +20,7 @@ cp freezer-web-ui/disaster_recovery/enabled/_5050_freezer.py  /usr/share/opensta
 ## 3. Sửa file '/usr/share/openstack-dashboard/openstack_dashboard/local/local_settings.py', thêm
 ```
 FREEZER_API_URL = 'http://10.10.10.160:9090' #IP của node Freezer-api
-``
+```
 
 ## 4. Khởi động lại apache2 và memcached
 ```
