@@ -7,7 +7,8 @@ Thực thi backup có thể thông qua câu lệnh hoặc định nghĩa job tro
 
 ## 1.1 Backup
 
-```$ sudo freezer-agent --path-to-backup /data/dir/to/backup
+```
+$sudo freezer-agent --path-to-backup /data/dir/to/backup
 --container freezer_new-data-backup --backup-name my-backup-name --storage swift
 ```
 
@@ -17,6 +18,7 @@ Bây giờ ta sẽ kiểm tra backup trong file log tại /root/.freezer/freezer
 
 
 ## 1.2 Khôi phục
+
 ```
 sudo freezer-agent --action restore --restore-abs-path /data/dir/to/backup
 --container freezer_new-data-backup--backup-name my-backup-name --storage swift
@@ -49,24 +51,38 @@ Ví dụ: Thư mục mysql_dir là /mnt/mysqldir được mount với logical vo
 
 ```
 $cat /root/.freezer/db.conf
+
 host = your.mysql.host.ip
+
 user = backup
+
 password = userpassword
 ```
 
 Tiến hành backup
+
 ```
 freezer-agent --lvm-srcvol /dev/havg2/halv2 \
+
 --lvm-dirmount /mnt/mysql-snapshot --lvm-volgroup havg2 \
+
 --path-to-backup /mnt/mysqldir \
+
 --mysql-conf /root/.freezer/db.conf \
+
 --container mysql-backup-container \
+
 --mode mysql --backup-name mysql-ops002
+
 ```
 
 ## 3.2 Restore
+
 ```
 freezer-agent --action restore --container mysql-backup-container \
+
 --backup-name mysql-ops002 --hostname cong-swift1 \
+
 --restore-abs-path /mnt/mysqldir --restore-from-date "2016-09-20T09:39:16" --overwrite --storage swift
+
 ```
