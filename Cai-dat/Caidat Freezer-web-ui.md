@@ -4,7 +4,7 @@
  - Platform: OpenStack Mitaka
 
 # B. Cài đặt
-## 1. Tải source code của freezer-web-ui, sử dụng bản stable/mitaka
+## 1. Tải source code của freezer-web-ui, sử dụng bản master
 ```
 git clone https://github.com/openstack/freezer-web-ui
 cd freezer-web-ui
@@ -22,11 +22,22 @@ cp freezer-web-ui/disaster_recovery/enabled/_5050_freezer.py  /usr/share/opensta
 FREEZER_API_URL = 'http://10.10.10.160:9090' #IP của node Freezer-api
 ```
 
-## 4. Khởi động lại apache2 và memcached
+## 4. Sửa file '/usr/share/openstack-dashboard/static/freezer/js/freezer.actions.action.js', bổ xung vào cuổi
+```
+$(function () {
+    hideEverything();
+    setActionOptions();
+    setStorageOptions();
+    setModeOptions();
+});
+```
+
+
+## 5. Khởi động lại apache2 và memcached
 ```
 service apache2 restart
 service memcache restart
 ```
 
-## 5. Giao diện quản lý của Freezer trên Dashboard
+## 6. Giao diện quản lý của Freezer trên Dashboard
 ![](http://image.prntscr.com/image/0df9e3d29892491e86830c5e9192c9d8.png)
