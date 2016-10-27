@@ -1,6 +1,6 @@
 # 1. Bug Keystone Version
 
-Ở bản stable/mitaka Freezer agent không xác thực được với Keystone V3 do file openstack.py thiếu thông tin user_domain_id và project_domain_id
+Ở bản stable/mitaka Freezer agent không xác thực được với Keystone V3 do file openstack.py thiếu thông tin user_domain_id và project_domain_id. Hiện tại ở bản master đã code đã fig bug này
 
 ![](http://image.prntscr.com/image/d9a62cf43b9446298564a028be099e57.png)
 
@@ -117,3 +117,10 @@ class OpenstackOptions:
 ```
 
 # 2. Bug Nova Backup
+
+Khi backup VM thì đầu tiên sẽ tạo  bản snapshot của VM sau đó upload image vào Swift và sau đó xóa image đi. Khi freezer tiến hành backup thì gặp bug MemoryError do quá trình dowload image những image dung lượng lớn vào RAM rồi đẩy vào swift. Hiện tại tính đến ngày 27/10/2016 ở cả brank master và stable/mitaka đều dính bug này 
+
+![](http://image.prntscr.com/image/270b0d48e16a45b1a257283df3511ee0.png)
+
+
+Fix: trong file tại đường dẫn: /usr/lib/python2.7/dist-packages/keystoneauth1/session.py
