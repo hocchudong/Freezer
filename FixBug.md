@@ -118,7 +118,7 @@ class OpenstackOptions:
 
 # 2. Bug Nova Backup
 
-Khi backup VM thì đầu tiên sẽ tạo  bản snapshot của VM sau đó upload image vào Swift và sau đó xóa image đi. Khi freezer tiến hành backup thì gặp bug MemoryError do quá trình dowload image những image dung lượng lớn vào RAM rồi đẩy vào swift. Hiện tại tính đến ngày 27/10/2016 ở cả brank master và stable/mitaka đều dính bug này 
+Khi backup VM thì đầu tiên sẽ tạo  bản snapshot của VM, upload image vào Swift và sau đó xóa image đi. Khi freezer tiến hành backup thì gặp bug MemoryError do quá trình dowload image những image dung lượng lớn vào RAM rồi đẩy vào swift. Hiện tại tính đến ngày 27/10/2016 ở cả branch master và stable/mitaka đều dính bug này 
 
 ![](http://image.prntscr.com/image/270b0d48e16a45b1a257283df3511ee0.png)
 
