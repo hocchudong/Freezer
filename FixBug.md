@@ -138,5 +138,5 @@ except MemoryError:
 ```
 ![](http://image.prntscr.com/image/6d0cf5e58c23431e981a46494023cf4f.png)
 
-Quá trình này sẽ bỏ qua quá trình dowload image vào RAM do tràn bộ nhớ và ghi trực tiếp xuống ổ đĩa.
+Quá trình này sẽ bỏ qua quá trình dowload image vào RAM do tràn bộ nhớ và đẩy trực tiếp xuống Swift.
 
