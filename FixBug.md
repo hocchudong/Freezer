@@ -123,4 +123,20 @@ Khi backup VM thì đầu tiên sẽ tạo  bản snapshot của VM sau đó upl
 ![](http://image.prntscr.com/image/270b0d48e16a45b1a257283df3511ee0.png)
 
 
-Fix: trong file tại đường dẫn: /usr/lib/python2.7/dist-packages/keystoneauth1/session.py
+Fix: trong file tại đường dẫn: /usr/lib/python2.7/dist-packages/keystoneauth1/session.py đưa dòng lệnh
+
+```
+text = self._remove_service_catalog(response.text)
+```
+vào try catch
+
+```
+try:
+    text = self._remove_service_catalog(response.text)
+except MemoryError:
+    text = '{body is to huge to show, sorry}'
+```
+![](http://image.prntscr.com/image/6d0cf5e58c23431e981a46494023cf4f.png)
+
+Quá trình này sẽ bỏ qua quá trình dowload image vào RAM do tràn bộ nhớ và ghi trực tiếp xuống ổ đĩa.
+
