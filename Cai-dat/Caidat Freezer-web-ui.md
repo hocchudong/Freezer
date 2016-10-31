@@ -12,6 +12,7 @@ git checkout stable/mitaka
 ```
 
 ## 2. Sửa /freezer-web-ui/disaster_recovery/backups/vim views.py
+
 '''
 @shield('Unable to retrieve backups.', redirect='backups:index')
     def get_data(self):
@@ -20,6 +21,7 @@ git checkout stable/mitaka
 '''
 
 ## 3. Sửa /freezer-web-ui/disaster_recovery/api/vim api.py
+
 '''
 class Backup(object):
 
