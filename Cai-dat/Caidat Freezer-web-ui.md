@@ -14,28 +14,28 @@ git checkout stable/mitaka
 ## 2. Sửa /freezer-web-ui/disaster_recovery/backups/vim views.py
 
 '''
-@shield('Unable to retrieve backups.', redirect='backups:index')
-    def get_data(self):
-        filters = self.table.get_filter_string() or {}
-        return freezer_api.Backup(self.request).list(search=filters)
+	@shield('Unable to retrieve backups.', redirect='backups:index')
+    	def get_data(self):
+        	filters = self.table.get_filter_string() or {}
+        	return freezer_api.Backup(self.request).list(search=filters)
 '''
 
 ## 3. Sửa /freezer-web-ui/disaster_recovery/api/vim api.py
 
 '''
-class Backup(object):
+	class Backup(object):
 
-    def __init__(self, request):
-        self.request = request
-        self.client = client(request)
+    	def __init__(self, request):
+        	self.request = request
+        	self.client = client(request)
 
-    def list(self, json=False, limit=500, offset=0, search=None):
-        if search:
-            search = {"match": [{"_all": search}, ], }
+    	def list(self, json=False, limit=500, offset=0, search=None):
+        	if search:
+            	search = {"match": [{"_all": search}, ], }
 
-        backups = self.client.backups.list_all(limit=limit,
-                                           offset=offset,
-                                           search=search)
+        	backups = self.client.backups.list_all(limit=limit,
+                                           		offset=offset,
+                                           		search=search)
 '''
 
 ## 4. Tiến hành cài đặt freezer-web-ui
