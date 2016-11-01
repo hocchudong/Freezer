@@ -1,4 +1,4 @@
-Một số ghi chú khi tìm hiểu code
+#Một số ghi chú khi tìm hiểu code
 
 ## 1. Điều chỉnh kích thước từng segment upload lên Swift (Byte), thực hiện trên node client
 ```
