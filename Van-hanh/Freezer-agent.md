@@ -115,9 +115,16 @@ freezer-agent --action restore --cinder-vol-id d3537664-84b2-457a-a13c-66efd2e4e
 
 
 ## 5.3 Backup using cinder-backup
+### 5.3.1 Backup full
 
 ```
 freezer-agent --cindernative-vol-id d3537664-84b2-457a-a13c-66efd2e4e1d1 --path-to-backup /root/admin-openrc  --log-file /root/logvolume_longlq
+```
+
+### 5.3.2 Backup Incremental
+
+```
+freezer-agent --cindernative-vol-id d3537664-84b2-457a-a13c-66efd2e4e1d1 --incremental  --path-to-backup /root/admin-openrc  --log-file /root/logvolume_longlq
 ```
 
 ## 5.4 Restore using cinder-backup
