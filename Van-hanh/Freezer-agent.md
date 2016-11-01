@@ -46,7 +46,8 @@ freezer-agent --action restore --container ha_lvm_container \
 
 ## 3.1 Backup
 
-Backup mysql sử dụng cơ chế snapshot của LVM. Ta sẽ backup thư mục của mysql.
+Backup mysql sử dụng cơ chế snapshot của LVM, cần phải cung cấp các thông tin về MySQL host, tài khoản có quyền lock DB, Freezer-agent sẽ tiến hành lock DB MySQL trước khi snapshot VM, ở đây các thông tin được cung cấp qua file `/root/.freezer/db.conf`
+
 Ví dụ: Thư mục mysql_dir là /mnt/mysqldir được mount với logical volume /dev/havg2/halv2 và file cấu hình /root/.freezer/db.conf
 
 ```
