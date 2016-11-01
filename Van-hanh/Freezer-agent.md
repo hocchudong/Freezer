@@ -86,3 +86,42 @@ freezer-agent --action restore --container mysql-backup-container \
 --restore-abs-path /mnt/mysqldir --restore-from-date "2016-09-20T09:39:16" --overwrite --storage swift
 
 ```
+
+# 4. Nova
+
+## 4.1 Backup
+```
+freezer-agent --nova-inst-id af700fe8-0235-4a1f-b6ee-335589cf4d4d  --debug --container vm_cr --backup-name vm_long_snap --storage swift --log-file /root/logvmha
+```
+
+## 4.2 Restore
+```
+freezer-agent --action restore --container vm_cr --nova-inst-id af700fe8-0235-4a1f-b6ee-335589cf4d4d -nova-restore-network d9bb6580-393d-4a87-b73b-d2efe6255125   --restore-from-date "2016-09-20T09:39:16" --log-file /root/nova-restore2.txt
+```
+
+# 5. Cinder
+
+## 5.1 Backup Snapshot
+
+```
+freezer-agent --cinder-vol-id d3537664-84b2-457a-a13c-66efd2e4e1d1 --path-to-backup /root/admin-openrc --container volume_con2  --storage swift --log-file /root/logvolume_longlq
+```
+
+## 5.2 Restore Snapshot
+```
+freezer-agent --action restore --cinder-vol-id d3537664-84b2-457a-a13c-66efd2e4e1d1 --container volume_con --storage swift --log-file /root/logvolume_longlq
+```
+
+
+
+## 5.3 Backup using cinder-backup
+
+```
+freezer-agent --cindernative-vol-id d3537664-84b2-457a-a13c-66efd2e4e1d1 --path-to-backup /root/admin-openrc  --log-file /root/logvolume_longlq
+```
+
+## 5.4 Restore using cinder-backup
+
+```
+freezer-agent --action restore --cindernative-vol-id d3537664-84b2-457a-a13c-66efd2e4e1d1 --log-file /root/logvolume_longlq
+```
