@@ -7,6 +7,7 @@ Thực thi backup có thể thông qua câu lệnh hoặc định nghĩa job tro
 
 ## 1.1 Backup
 
+### 1.1.1 Lưu trữ Swift
 ```
 $sudo freezer-agent --path-to-backup /data/dir/to/backup
 --container freezer_new-data-backup --backup-name my-backup-name --storage swift
@@ -16,6 +17,35 @@ Mặc định `--mode fs` được thiết lập. Câu lệnh sẽ nén nội du
 
 Bây giờ ta sẽ kiểm tra backup trong file log tại `/root/.freezer/freezer.log`
 
+### 1.1.2 Lưu trữ SSH server 
+
+```
+$ sudo freezer-agent --path-to-backup /data/dir/to/backup
+--container /remote-machine-path/ --backup-name my-backup-name
+--storage ssh --ssh-username ubuntu --ssh-key ~/.ssh/id_rsa
+--ssh-host 8.8.8.8
+```
+
+Chú ý: ở bản master ngày 03/11 đang có bug. Một là sửa trực tiếp vào code, hai là làm như sau
+
+Giải sử ta cần đẩy file adminv3.sh từ zabbix host sang SSH server địa chỉ 172.16.69.177
+
+```
+root@zabbix:~# freezer-agent --path-to-backup /root/adminv3.sh --container /root/freezerssh --backup-name ha-bk2609 --storage ssh --ssh-username root --ssh-key /root/.ssh/id_rsa --ssh-host 172.16.69.177 --log-file=/root/logfile.log
+```
+ta sẽ nhận được log
+
+```
+Critical Error: [Errno 2] No such file
+```
+
+Trên server 172.16.69.177 tạo thư mục
+
+```
+ mkdir -p /root/freezerssh/metadata/tar/zabbix_ha-bk2609
+```
+
+zabbix_ha-bk2609 là hostname_backupname
 
 ## 1.2 Khôi phục
 
