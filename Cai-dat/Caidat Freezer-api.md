@@ -24,9 +24,11 @@ pip install ./
 ```
 
 ### 1.4. Copy file cấu hình vào thư mục `/etc/freezer`
+```
 cp etc/freezer/freezer-api.conf.sample /etc/freezer/freezer-api.conf
 cp etc/freezer/freezer-paste.ini /etc/freezer/freezer-paste.ini
 cp etc/freezer/policy.json /etc/freezer/policy.json
+```
 
 ### 1.5. Chỉnh sửa file cấu hình
 Cấu hình cho keystone và elastic search
@@ -46,8 +48,11 @@ number_of_replicas=0 #Số bản sao của DB.
 
 ```
 
-### 1.6. Tạo service quản lý bởi init cho freezer-api, `vim /etc/init/freezer-api.conf`
+### 1.6. Tạo service quản lý bởi init cho freezer-api
 ```
+vim /etc/init/freezer-api.conf
+
+
 description "Freezer AIP Service"
 
 # Service level
@@ -95,8 +100,10 @@ apt-get update
 apt-get -y install elasticsearch
 ```
 
-### 2.6. Chỉnh sửa file cấu hình `/etc/elasticsearch/elasticsearch.yml`
+### 2.6. Chỉnh sửa file cấu hình
 ```
+vim /etc/elasticsearch/elasticsearch.yml
+
 network.host: localhost #Có thể sửa thành 0.0.0.0 nếu muốn tất cả các Server ngoài truy cập vào
 ```
 
