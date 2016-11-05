@@ -11,7 +11,7 @@ cd freezer-web-ui
 git checkout stable/mitaka
 ```
 
-## 2. Sửa /freezer-web-ui/disaster_recovery/backups/vim views.py
+## 2. Sửa `/freezer-web-ui/disaster_recovery/backups/vim views.py`
 
 ```
 @shield('Unable to retrieve backups.', redirect='backups:index')
@@ -20,7 +20,7 @@ git checkout stable/mitaka
         return freezer_api.Backup(self.request).list(search=filters)
 ```
 
-## 3. Sửa /freezer-web-ui/disaster_recovery/api/vim api.py
+## 3. Sửa `/freezer-web-ui/disaster_recovery/api/vim api.py`
 
 ```
 class Backup(object):
@@ -38,18 +38,56 @@ class Backup(object):
                                            search=search)
 ```
 
-## 4. Tiến hành cài đặt freezer-web-ui
+## 4. Lỗi không hiển thị các bản backup
+### 4.1. Sửa file `/root/freezer-web-ui/disaster_recovery/backups/views.py`
+
+```
+class IndexView(tables.DataTableView):
+    name = _("Backups")
+    slug = "backups"
+    table_class = freezer_tables.BackupsTable
+    template_name = "disaster_recovery/backups/index.html"
+
+    @shield('Unable to retrieve backups.', redirect='backups:index')
+    def get_data(self):
+        filters = self.table.get_filter_string() or {}
+        return freezer_api.Backup(self.request).list(search=filters)
+```
+
+
+
+### 4.2. Sửa file `/root/freezer-web-ui/disaster_recovery/api/api.py`
+
+```
+class Backup(object):
+
+    def __init__(self, request):
+        self.request = request
+        self.client = client(request)
+
+    def list(self, json=False, limit=500, offset=0, search=None):
+        if search:
+            search = {"match": [{"_all": search}, ], }
+
+        backups = self.client.backups.list_all(limit=limit,
+                                           offset=offset,
+                                           search=search)
+
+```
+
+## 5. Tiến hành cài đặt freezer-web-ui
 ```
 python setup.py install
 cp freezer-web-ui/disaster_recovery/enabled/_5050_freezer.py  /usr/share/openstack-dashboard/openstack_dashboard/enabled/_5050_freezer.py
 ```
 
-## 5. Sửa file '/usr/share/openstack-dashboard/openstack_dashboard/local/local_settings.py', thêm
+## 6. Sửa file `/usr/share/openstack-dashboard/openstack_dashboard/local/local_settings.py`, thêm
 ```
 FREEZER_API_URL = 'http://10.10.10.160:9090' #IP của node Freezer-api
 ```
 
-## 6. Sửa file '/usr/share/openstack-dashboard/static/freezer/js/freezer.actions.action.js', bổ xung vào cuổi
+## 7. Lỗi không load được freezer UI
+### 7.1. Sửa file `/usr/share/openstack-dashboard/static/freezer/js/freezer.actions.action.js`, bổ xung vào cuổi 
 ```
 $(function () {
     hideEverything();
@@ -59,10 +97,7 @@ $(function () {
 });
 ```
 
-
-
-
-## 7. Khởi động lại apache2 và memcached
+## 8. Khởi động lại apache2 và memcached
 ```
 service apache2 restart
 service memcache restart

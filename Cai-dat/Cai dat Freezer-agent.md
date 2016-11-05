@@ -49,12 +49,15 @@ sudo python setup.py install
 ```
 
 - Cài đặt các module cần thiết
+
+```
 pip install tzlocal futures funcsigs debtcollector babel netaddr rfc3986  python-dateutil oslo.context oslo.serialization iso8601 monotonic keystoneauth1 pyparsing prettytable netifaces cryptography
+```
 
 - Kiểm tra trạng thái freezer-agent và freezer-scheduler
-'''
+
+```
 freezer-scheduler --status
 freezer-agent -h
-'''
-
+```
   
