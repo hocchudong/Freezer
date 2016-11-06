@@ -57,7 +57,7 @@ pip install tzlocal futures funcsigs debtcollector babel netaddr rfc3986  python
 - Kiểm tra trạng thái freezer-agent và freezer-scheduler
 
 ```
-freezer-scheduler --status
+freezer-scheduler status
 freezer-agent -h
 ```
   

@@ -33,6 +33,8 @@ cp etc/freezer/policy.json /etc/freezer/policy.json
 ### 1.5. Chỉnh sửa file cấu hình
 Cấu hình cho keystone và elastic search
 ```
+vim /etc/freezer/freezer-api.conf
+
 ...
 [keystone_authtoken]
 auth_uri=http://10.10.10.157:5000/v3 

@@ -119,6 +119,7 @@ freezer-agent --action restore --container mysql-backup-container \
 ```
 
 # 4. Nova
+Chưa thể backup incremental cho máy ảo, các bản backup vào từng thời điểm khác nhau đều là full
 
 ## 4.1 Backup
 ```
@@ -133,6 +134,8 @@ freezer-agent --action restore --container vm_cr --nova-inst-id af700fe8-0235-4a
 # 5. Cinder
 
 ## 5.1 Backup Snapshot
+Chưa thể backup incremental cho volume với phương pháp này, các bản backup vào từng thời điểm khác nhau đều là full
+
 
 ```
 freezer-agent --cinder-vol-id d3537664-84b2-457a-a13c-66efd2e4e1d1 --path-to-backup /root/admin-openrc --container volume_con2  --storage swift --log-file /root/logvolume_longlq
