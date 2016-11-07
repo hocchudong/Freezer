@@ -49,7 +49,7 @@ def backup_cinder_by_glance(self, volume_id):
 ```
 
 ## 5. Fix bug không xóa VM Snapshot sau khi Backup lên Swift xong 
-Nguyên nhân do sử dụng Ceph làm Backend Glance, Glance api v2 không thể xóa image (Image status owner: None), do đó phải dùng Glance api v1 để xóa
+*Nguyên nhân do sử dụng Ceph làm Backend Glance, Glance api v2 không thể xóa image (Image status owner: None), do đó phải dùng Glance api v1 để xóa*
 
 ```
 vim /usr/local/lib/python2.7/dist-packages/freezer/openstack/osclients.py
@@ -93,4 +93,21 @@ def backup_nova(self, instance_id):
     glancev1.images.delete(image.id)
     ...
 ``` 
+
+## 6. Fix bug không xóa Image sau khi restore VM và volume 
+*Nguyên nhân do sử dụng Ceph làm Backend Glance, Glance api v2 không thể xóa image (Image status owner: None), do đó phải dùng Glance api v1 để xóa*
+```
+vim /usr/local/lib/python2.7/dist-packages/freezer/openstack/restore.py
+    def restore_cinder_by_glance(self, volume_id, restore_from_timestamp):
+        ...
+        self.client_manager.get_glancev1().images.delete(image)
+        ...
+    def restore_nova(self, instance_id, restore_from_timestamp,
+                     nova_network=None):
+        glancev1 = self.client_manager.create_glancev1()
+        glancev1.images.delete(image.id)
+        ...
+
+```
+
 
