@@ -196,3 +196,5 @@ Trong đó:
  - `1478581647`: Linux epoch time tại thời điểm bản backup được khởi tạo full
  - `0_1478581647`: bản backup đầu tiên từ lúc backup full tại thời điểm `1478581647`
 
+Khôi phục lại một bản backup
+`gzip -d < file.data | tar xvf - `
