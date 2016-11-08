@@ -149,28 +149,50 @@ Hiện tại ở bản master tính đến ngày 08/11/2016 khi thực hiện re
 
 ![](http://image.prntscr.com/image/9d52ac1c998946a6b1ff8e8f4e48b55f.png)
 
-###code:
-
-vi /usr/local/lib/python2.7/dist-packages/freezer/storage/base.py
+###**CODE**:
+```
+vim /usr/local/lib/python2.7/dist-packages/freezer/storage/base.py
+```
 
 ![](http://image.prntscr.com/image/d47c9baf36654d4aae4b6a4cdd4ba79d.png)
-
-vi /usr/local/lib/python2.7/dist-packages/freezer/storage/physical.py
+```
+vim /usr/local/lib/python2.7/dist-packages/freezer/storage/physical.py
+```
 
 ![](http://image.prntscr.com/image/fddf337bceaf4cfbb2a4113206b76c36.png)
 
-###fix bug:
+###**FIX BUG**:
 
-vi /usr/local/lib/python2.7/dist-packages/freezer/job.py
+```
+vim /usr/local/lib/python2.7/dist-packages/freezer/job.py
+```
 
 ![](http://image.prntscr.com/image/4830ae120baf497e9ce5ce97345d5117.png)
 
-vi /usr/local/lib/python2.7/dist-packages/freezer/storage/base.py
+```
+vim /usr/local/lib/python2.7/dist-packages/freezer/storage/base.py
+```
 
 ![](http://image.prntscr.com/image/ebab93eff6c34fd8914b74960fb41261.png)
-
-vi /usr/local/lib/python2.7/dist-packages/freezer/storage/physical.py
-
+```
+vim /usr/local/lib/python2.7/dist-packages/freezer/storage/physical.py
+```
 ![](http://image.prntscr.com/image/55e86bbf2fa64778825b6cfd639294b6.png)
 
+
+## 8. Tổ chức các file trong thư mục backup
+![](http://image.prntscr.com/image/e46faeafd28041e2bd28abbb0872b5fb.png)
+Một thư mục backup bao gồm các thư mục con
+ - Data: chứa file backup (full và incremental)
+ - Metadata: chứa metadata của bản backup, gồm các thông tin về công cụ mã hóa, nén và lưu trữ
+    Một metadata file như sau:
+   `{"encryption": false, "compression": "gzip", "engine_name": "tar"}`
+ 
+ 
+VD về một thư mục backup:
+![](http://image.prntscr.com/image/e46faeafd28041e2bd28abbb0872b5fb.png)
+Trong đó:
+ - `zabbix_test`: tên của bản backup được khai báo khi thực hiện backup
+ - `1478581647`: Linux epoch time tại thời điểm bản backup được khởi tạo full
+ - `0_1478581647`: bản backup đầu tiên từ lúc backup full tại thời điểm `1478581647`
 
