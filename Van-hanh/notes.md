@@ -143,3 +143,24 @@ vim /usr/local/lib/python2.7/dist-packages/freezer/openstack/restore.py
         ...
 
 ```
+## 7. Fix bug không restore from date
+
+Hiện tại ở bản master tính đến ngày 08/11/2016 khi thực hiện restore theo thời gian ta gặp phải lỗi này
+
+![](http://image.prntscr.com/image/9d52ac1c998946a6b1ff8e8f4e48b55f.png)
+
+code:
+vi /usr/local/lib/python2.7/dist-packages/freezer/storage/base.py
+![](http://image.prntscr.com/image/d47c9baf36654d4aae4b6a4cdd4ba79d.png)
+vi /usr/local/lib/python2.7/dist-packages/freezer/storage/physical.py
+![](http://image.prntscr.com/image/fddf337bceaf4cfbb2a4113206b76c36.png)
+
+fix bug:
+vi /usr/local/lib/python2.7/dist-packages/freezer/job.py
+![](http://image.prntscr.com/image/0b679b95ca7d47fd83ea5b0ef1df7717.png)
+vi /usr/local/lib/python2.7/dist-packages/freezer/storage/base.py
+![](http://image.prntscr.com/image/ebab93eff6c34fd8914b74960fb41261.png)
+vi /usr/local/lib/python2.7/dist-packages/freezer/storage/physical.py
+![](http://image.prntscr.com/image/55e86bbf2fa64778825b6cfd639294b6.png)
+
+
