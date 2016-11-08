@@ -163,7 +163,7 @@ vi /usr/local/lib/python2.7/dist-packages/freezer/storage/physical.py
 
 vi /usr/local/lib/python2.7/dist-packages/freezer/job.py
 
-![](http://image.prntscr.com/image/0b679b95ca7d47fd83ea5b0ef1df7717.png)
+![](http://image.prntscr.com/image/4830ae120baf497e9ce5ce97345d5117.png)
 
 vi /usr/local/lib/python2.7/dist-packages/freezer/storage/base.py
 
