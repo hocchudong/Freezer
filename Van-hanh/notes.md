@@ -7,7 +7,7 @@ vim /usr/local/lib/python2.7/dist-packages/freezer/openstack/osclients.py
 def download_image(self, image):
         """
         ...
-        return utils.ReSizeStream(d, image.size, 1000000) #Sua thanh kich thuoc mong muon
+        return utils.ReSizeStream(stream, image.size, 1000000) #Sua thanh kich thuoc mong muon
 
  ```
 
@@ -92,22 +92,54 @@ def backup_nova(self, instance_id):
     glancev1 = client_manager.get_glance_v1()
     glancev1.images.delete(image.id)
     ...
+def backup_cinder_by_glance(self, volume_id):
+    ...
+    client_manager.get_glance_v1().images.delete(image.id)
+    ...
 ``` 
 
-## 6. Fix bug không xóa Image sau khi restore VM và volume 
-*Nguyên nhân do sử dụng Ceph làm Backend Glance, Glance api v2 không thể xóa image (Image status owner: None), do đó phải dùng Glance api v1 để xóa*
+## 6. Fix bug không xóa Image sau khi restore volume 
+*Chú ý chỉ thực hiện được khi Cinder và Glance không cùng Ceph backend*
+
 ```
 vim /usr/local/lib/python2.7/dist-packages/freezer/openstack/restore.py
     def restore_cinder_by_glance(self, volume_id, restore_from_timestamp):
         ...
-        self.client_manager.get_glancev1().images.delete(image)
+        client_manager = self.client_manager
+        cinder = client_manager.get_cinder()
+        volume_id_raw = client_manager.get_cinder().volumes.create(size,
+                                                        imageRef=image.id)
+        volume_id_str = str(volume_id_raw)
+        volume_id = volume_id_str.split(':')[1].strip(' ').strip('>')
+        LOG.info(volume_id)
+        volume = cinder.volumes.get(volume_id)
+        while volume.status != 'available':
+            time.sleep(5)
+            try:
+                volume = cinder.volumes.get(volume_id)
+            except Exception as e:
+                LOG.error(e)
+
+        self.client_manager.get_glance_v1().images.delete(image) #Nếu sử dụng Ceph backend phải dùng glance api v1
         ...
     def restore_nova(self, instance_id, restore_from_timestamp,
                      nova_network=None):
-        glancev1 = self.client_manager.create_glancev1()
+        glancev1 = self.client_manager.create_glance_v1()
         glancev1.images.delete(image.id)
         ...
 
 ```
 
+## 7. Fix bug không xóa Image sau khi restore VM
+*Chú ý chỉ thực hiện được khi Nova và Glance không cùng Ceph backend*
+```
+vim /usr/local/lib/python2.7/dist-packages/freezer/openstack/restore.py
 
+    def restore_nova(self, instance_id, restore_from_timestamp,
+                     nova_network=None):
+        ...
+        glancev1 = self.client_manager.create_glance_v1()
+        glancev1.images.delete(image.id)
+        ...
+
+```
