@@ -149,7 +149,7 @@ Hiện tại ở bản master tính đến ngày 08/11/2016 khi thực hiện re
 
 ![](http://image.prntscr.com/image/9d52ac1c998946a6b1ff8e8f4e48b55f.png)
 
-code:
+###code:
 
 vi /usr/local/lib/python2.7/dist-packages/freezer/storage/base.py
 
@@ -159,7 +159,7 @@ vi /usr/local/lib/python2.7/dist-packages/freezer/storage/physical.py
 
 ![](http://image.prntscr.com/image/fddf337bceaf4cfbb2a4113206b76c36.png)
 
-fix bug:
+###fix bug:
 
 vi /usr/local/lib/python2.7/dist-packages/freezer/job.py
 
