@@ -198,3 +198,38 @@ Trong đó:
 
 Khôi phục lại một bản backup
 `gzip -d < file.data | tar xvf - `
+
+
+## 9. Fix bug không restore được qua SSH
+*Do SFTP đã bị đóng phiên, cần mở phiên mới để lấy metadata từ remote Server về*
+```
+vim /usr/local/lib/python2.7/dist-packages/freezer/storage/ssh.py
+    ...
+    def get_file(self, from_path, to_path):
+    ssh = paramiko.SSHClient()
+    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+
+    ssh.connect(self.remote_ip, username=self.remote_username,
+                key_filename=self.ssh_key_path, port=self.port)
+    self.ssh = ssh
+    self.ftp = self.ssh.open_sftp()
+    self.ftp.get(from_path, to_path)
+    ...
+```
+
+## 10. Fix bug khi Backup qua SSH phải tạo thư mục với đường là hostname và tên bản backup trước trên Remote Host (VD: /root/metadata/tar/zabbix_long_ssh)
+*Thiếu đoạn code khởi tạo path*
+```
+vim /usr/local/lib/python2.7/dist-packages/freezer/storage/physical.py
+    def get_level_zero(self,
+                       engine,
+                       hostname_backup_name,
+                       recent_to_date=None):
+        path = self.metadata_path(
+            engine=engine,
+            hostname_backup_name=hostname_backup_name)
+        try:
+            self.create_dirs(path)
+        except:
+            pass
+```
