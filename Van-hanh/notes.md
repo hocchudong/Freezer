@@ -190,7 +190,6 @@ Một thư mục backup bao gồm các thư mục con
  
  
 VD về một thư mục backup:
-![](http://image.prntscr.com/image/e46faeafd28041e2bd28abbb0872b5fb.png)
 Trong đó:
  - `zabbix_test`: tên của bản backup được khai báo khi thực hiện backup
  - `1478581647`: Linux epoch time tại thời điểm bản backup được khởi tạo full
@@ -217,7 +216,7 @@ vim /usr/local/lib/python2.7/dist-packages/freezer/storage/ssh.py
     ...
 ```
 
-## 10. Fix bug khi Backup qua SSH phải tạo thư mục với đường là hostname và tên bản backup trước trên Remote Host (VD: /root/metadata/tar/zabbix_long_ssh)
+## 10. Fix bug khi Backup qua SSH phải tạo thư mục với đường là hostname và tên bản backup trước trên Remote Host (VD: `/root/metadata/tar/zabbix_long_ssh`)
 *Thiếu đoạn code khởi tạo path*
 ```
 vim /usr/local/lib/python2.7/dist-packages/freezer/storage/physical.py
@@ -233,3 +232,14 @@ vim /usr/local/lib/python2.7/dist-packages/freezer/storage/physical.py
         except:
             pass
 ```
+
+## 11. Freezer sử dụng thư viện paramiko để giao tiếp SFTP với Remote FS, có thể sử dụng thư viện này thông qua ví dụ sau:
+    import paramiko
+    hostname = '172.16.69.179'
+    port = 22
+    username = 'root'
+    password = 'a'
+    t = paramiko.Transport((hostname, port))
+    t.connect(username=username, password=password)
+    sftp = paramiko.SFTPClient.from_transport(t)
+    sftp.mkdir(path)
