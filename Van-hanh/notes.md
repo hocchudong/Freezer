@@ -179,6 +179,12 @@ vim /usr/local/lib/python2.7/dist-packages/freezer/storage/physical.py
 ```
 ![](http://image.prntscr.com/image/55e86bbf2fa64778825b6cfd639294b6.png)
 
+vim /usr/local/lib/python2.7/dist-packages/freezer/openstack/restore.py
+```
+    def _get_backups(self, path, restore_from_timestamp):
+         backups = list(filter(lambda x: x <= restore_from_timestamp, backups))
+```
+
 
 ## 8. Tổ chức các file trong thư mục backup
 ![](http://image.prntscr.com/image/e46faeafd28041e2bd28abbb0872b5fb.png)
@@ -243,3 +249,5 @@ vim /usr/local/lib/python2.7/dist-packages/freezer/storage/physical.py
     t.connect(username=username, password=password)
     sftp = paramiko.SFTPClient.from_transport(t)
     sftp.mkdir(path)
+
+## 12. Fix 
