@@ -250,4 +250,21 @@ vim /usr/local/lib/python2.7/dist-packages/freezer/storage/physical.py
     sftp = paramiko.SFTPClient.from_transport(t)
     sftp.mkdir(path)
 
-## 12. Fix 
+## 12. Fix bug backup sử dụng LVM Snapshot không có nội dung ở branch origin/master
+*Do hàm snapshot_create bị lỗi nên không tạo được LVM Snapshot*
+```
+vim /usr/local/lib/python2.7/dist-packages/freezer/snapshot/snapshot.py
+    def snapshot_create(backup_opt_dict):
+            if not backup_opt_dict:
+                return False
+```
+
+```
+vim /usr/local/lib/python2.7/dist-packages/freezer/snapshot/lvm.py
+    ...
+    def lvm_snap(backup_opt_dict):
+        backup_opt_dict.path_to_backup = backup_opt_dict.lvm_dirmount 
+    ...
+    def _umount(path):
+        #os.rmdir(path) #Không xóa thư mục mount sau khi backup xong    
+```
