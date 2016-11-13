@@ -240,6 +240,7 @@ vim /usr/local/lib/python2.7/dist-packages/freezer/storage/physical.py
 ```
 
 ## 11. Freezer sử dụng thư viện paramiko để giao tiếp SFTP với Remote FS, có thể sử dụng thư viện này thông qua ví dụ sau:
+```
     import paramiko
     hostname = '172.16.69.179'
     port = 22
@@ -249,6 +250,7 @@ vim /usr/local/lib/python2.7/dist-packages/freezer/storage/physical.py
     t.connect(username=username, password=password)
     sftp = paramiko.SFTPClient.from_transport(t)
     sftp.mkdir(path)
+```
 
 ## 12. Fix bug backup sử dụng LVM Snapshot không có nội dung ở branch origin/master
 *Do hàm snapshot_create bị lỗi nên không tạo được LVM Snapshot*
