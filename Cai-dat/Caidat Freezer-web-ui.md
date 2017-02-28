@@ -6,7 +6,7 @@
 # B. Cài đặt
 ## 1. Tải source code của freezer-web-ui, sử dụng bản master
 ```
-git clone https://github.com/openstack/freezer-web-ui
+git clone https://github.com/openstack/freezer-web-ui.git
 cd freezer-web-ui
 git checkout stable/mitaka
 ```
